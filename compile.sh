@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-g++ cMchecker.cpp -o cMchecker
+g++ src/cMchecker.cpp -o build/cMchecker
