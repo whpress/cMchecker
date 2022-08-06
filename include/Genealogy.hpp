@@ -1,11 +1,13 @@
 #ifndef GENEALOGY_H 
 #define GENEALOGY_H
 
+#include "includeLibs.hpp"
 #include "lenFixedCharArray.hpp"
 #include "Person.hpp"
 #include "setResolution.hpp"
 #include "TrialsOutput.hpp"
 #include "globals.hpp"
+#include "myThrow.hpp"
 
 struct Genealogy {
 	// just a list of all persons defined, for creating, cleanup, etc.

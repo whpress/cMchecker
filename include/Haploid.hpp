@@ -1,6 +1,7 @@
 #ifndef HAPLOID_H 
 #define HAPLOID_H
 
+#include "includeLibs.hpp"
 #include "globals.hpp"
 
 struct Haploid {

@@ -1,6 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+#include "includeLibs.hpp"
 #include "Genome.hpp"
 
 struct Person {

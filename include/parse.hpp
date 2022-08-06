@@ -1,10 +1,12 @@
 #ifndef PARSE_H
 #define PARSE_H
 
+#include "includeLibs.hpp"
 #include "DataSet.hpp"
 #include "Genealogy.hpp"
 #include "MultivariateModel.hpp"
 #include "globals.hpp"
+#include "myThrow.hpp"
 
 Int parse(Genealogy &gg, DataSet &dd, FILE* &INP) {
 	Int nread, nconv;

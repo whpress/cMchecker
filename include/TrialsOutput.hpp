@@ -1,6 +1,8 @@
 #ifndef TRIALSOUTPUT_H
 #define TRIALSOUTPUT_H
 
+#include "includeLibs.hpp"
+
 struct TrialsOutput {
 	NRvector<MatDoub> block;
 	VecInt cperid, mperid;
