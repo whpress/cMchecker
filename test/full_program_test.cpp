@@ -5,20 +5,13 @@
 #include <unistd.h>
 #define _getcwd getcwd
 #endif
-#include "../nr3a.h"
-#include "../ran.h"
-#include "../ludcmp.h"
-#include "../gamma.h"
-#include "../incgammabeta.h"
-#include "../hash.h"
-#include "../sort.h"
 
-void mythrow(const char *message) {
-	printf("%s\n", message);
-	exit(1);
-}
+#include "../include/includeLibs.hpp"
+#include "../include/parse.hpp"
+#include "../include/DataSet.hpp"
+#include "../include/Genealogy.hpp"
+#include "../include/myThrow.hpp"
 
-#include "../cMchecker_body.h"
 #include <gtest/gtest.h>
 
 void simulate_body_main(int argc, char **argv, Genealogy &gg, DataSet &dd) {

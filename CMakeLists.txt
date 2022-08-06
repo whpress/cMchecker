@@ -4,6 +4,14 @@ project(cMchecker)
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
 
+# Bring the headers into the project
+include_directories(include)
+# Add src files individualy 
+set(CLI_SOURCES src/cMchecker.cpp)
+# Or add all src files
+# file(GLOB SOURCES "src/*.cpp")
+add_executable(cMchecker ${CLI_SOURCES})
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
