@@ -1,3 +1,9 @@
+#ifndef DATASET_H
+#define DATASET_H
+
+#include "Genealogy.hpp"
+#include "globals.hpp"
+
 struct DataSet {
 	// allows for entry and manipulation of autosomal shared data
 	Int ndat;
@@ -56,3 +62,5 @@ struct DataSet {
 		ndat = nn;
 	}
 };
+
+#endif

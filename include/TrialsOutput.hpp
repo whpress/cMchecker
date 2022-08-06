@@ -1,3 +1,6 @@
+#ifndef TRIALSOUTPUT_H
+#define TRIALSOUTPUT_H
+
 struct TrialsOutput {
 	NRvector<MatDoub> block;
 	VecInt cperid, mperid;
@@ -10,3 +13,5 @@ struct TrialsOutput {
 	Int size() { return block.size(); }
 };
 TrialsOutput trials_g(0,0,0); // a global TrialsOutput
+
+#endif

@@ -1,3 +1,11 @@
+#ifndef PARSE_H
+#define PARSE_H
+
+#include "DataSet.hpp"
+#include "Genealogy.hpp"
+#include "MultivariateModel.hpp"
+#include "globals.hpp"
+
 Int parse(Genealogy &gg, DataSet &dd, FILE* &INP) {
 	Int nread, nconv;
 	char lin[4096], line[4096], token[1024], token2[1024], token3[1024];
@@ -174,3 +182,5 @@ showModelMoving name1 name2 <-- model excusion moving name1's data to name2\n\
 permanentlyRemove name <-- removes name from tree\n\
 setError value <-- default is 0.03, but can increase to make model more tolerant (lower Chi-Square) \n\
 ";
+
+#endif

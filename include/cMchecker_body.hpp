@@ -1,3 +1,10 @@
+#ifndef CMCHECKER_H
+#define CMCHECKER_H
+
+#include "parse.hpp"
+#include "DataSet.hpp"
+#include "Genealogy.hpp"
+
 //#include "non-production-mains.h"  // all excursions and off-line uses
 
 int main(int argc, char **argv) { // production of standalone executable
@@ -26,4 +33,4 @@ int main(int argc, char **argv) { // production of standalone executable
 	return 0;
 }
 
-
+#endif

@@ -1,3 +1,8 @@
+#ifndef SETRESOLUTION_H
+#define SETRESOLUTION_H
+
+#include "globals.hpp"
+
 void setresolution(Int totb) {
 	// given total number of bins in genome, get integer bins for each chr
 	binsperchr.resize(NCHR);
@@ -21,3 +26,5 @@ void setresolution(Int totb) {
 	if (0) for (int i = 0; i < NCHR; i++) printf("%2d: %.3f %4d %.3f %.3f\n",
 		i + 1, cmperchr[i], binsperchr[i],cmperbin[i],meancmperbin);
 }
+
+#endif

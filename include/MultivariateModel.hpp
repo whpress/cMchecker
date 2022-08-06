@@ -1,3 +1,11 @@
+#ifndef MULTIVARIATEMODEL_H
+#define MULTIVARIATEMODEL_H
+
+#include "DataSet.hpp"
+#include "Genealogy.hpp"
+#include "TrialsOutput.hpp"
+#include "globals.hpp"
+
 struct MultivariateModel {
 	// model brings together a genealogy, a set of trials (theoretical), and a set of data (measured)
 	Genealogy &gg;
@@ -130,3 +138,5 @@ Comparison: MV-Gaussian Bayes likelihood ratio of this model to baseline is %.4g
 		//printmat(sigma, "%8.1e ");
 	}
 };
+
+#endif

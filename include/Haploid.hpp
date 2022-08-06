@@ -1,3 +1,8 @@
+#ifndef HAPLOID_H 
+#define HAPLOID_H
+
+#include "globals.hpp"
+
 struct Haploid {
 	NRvector<VecInt> chromos;
 	Haploid() : chromos(NCHR) {
@@ -128,3 +133,5 @@ struct Haploid {
 		return ans;
 	}
 };
+
+#endif

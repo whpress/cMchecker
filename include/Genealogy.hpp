@@ -1,3 +1,12 @@
+#ifndef GENEALOGY_H 
+#define GENEALOGY_H
+
+#include "lenFixedCharArray.hpp"
+#include "Person.hpp"
+#include "setResolution.hpp"
+#include "TrialsOutput.hpp"
+#include "globals.hpp"
+
 struct Genealogy {
 	// just a list of all persons defined, for creating, cleanup, etc.
 	const static int maxpersons = 1000;
@@ -255,3 +264,5 @@ struct Genealogy {
 	}
 
 };
+
+#endif

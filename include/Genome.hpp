@@ -1,3 +1,9 @@
+#ifndef GENOME_H
+#define GENOME_H
+
+#include "Haploid.hpp"
+#include "globals.hpp"
+
 struct Genome {
 	// hides all features of the genome; every person has one
 	char ancestry[1024]; // ancestry as a human-readable string
@@ -77,3 +83,5 @@ struct Genome {
 		return ans;
 	}
 };
+
+#endif

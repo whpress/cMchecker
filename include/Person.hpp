@@ -1,3 +1,8 @@
+#ifndef PERSON_H
+#define PERSON_H
+
+#include "Genome.hpp"
+
 struct Person {
 	// a person in (or mated to) the genealogy tree
 	int idnum, idfa, idmo;
@@ -7,3 +12,5 @@ struct Person {
 	Person() : idnum(-1), idfa(-1), idmo(-1), isTree(false), // nchildren(0),
 		isCperson(false), isMperson(false) {}
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
 #define version "0.018 (beta)"
 
 Int NCHR = 22; // autosomal only
@@ -18,3 +21,5 @@ char idtocode[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 Ran ran;
 char *mpersons_g[1000]; // global array of mpersons names
 Int npersons_g = 0; // global number of mpersons
+
+#endif
