@@ -1,0 +1,13 @@
+newPerson rootA
+newPerson rootB
+newChild Dan rootA rootB
+newChild Tim rootA rootB
+newChild Shanon Tim
+
+personOfInterest Dan Shanon
+
+newData Dan Shanon 1700
+
+runTrials 1000
+
+showModel
