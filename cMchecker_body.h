@@ -913,7 +913,7 @@ setError value <-- default is 0.03, but can increase to make model more tolerant
 
 //#include "non-production-mains.h"  // all excursions and off-line uses
 
-int main(int argc, char **argv) { // production of standalone executable
+int body_main(int argc, char **argv) { // production of standalone executable
 	printf("cMchecker: Multivariate Gaussian model for genealogies, version %s\n", version);
 	printf("Copyright (C) 2019 DNA Doe Project, Inc.\n\n");
 	if (argc < 2) {
