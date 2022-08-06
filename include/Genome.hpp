@@ -1,13 +1,15 @@
 #ifndef GENOME_H
 #define GENOME_H
 
+#include "includeLibs.hpp"
 #include "Haploid.hpp"
 #include "globals.hpp"
+#include "myThrow.hpp"
 
 struct Genome {
 	// hides all features of the genome; every person has one
 	char ancestry[1024]; // ancestry as a human-readable string
-	Haploid fa, mo;
+	Haploid fa, mo; // father, mother haploids
 
 	Doub match(Genome &other) {
 	// returns centiMorgan value of match between this and other

@@ -1,6 +1,7 @@
 #ifndef SETRESOLUTION_H
 #define SETRESOLUTION_H
 
+#include "includeLibs.hpp"
 #include "globals.hpp"
 
 void setresolution(Int totb) {

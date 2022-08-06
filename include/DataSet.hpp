@@ -1,8 +1,10 @@
 #ifndef DATASET_H
 #define DATASET_H
 
+#include "includeLibs.hpp"
 #include "Genealogy.hpp"
 #include "globals.hpp"
+#include "myThrow.hpp"
 
 struct DataSet {
 	// allows for entry and manipulation of autosomal shared data

@@ -3,6 +3,8 @@
 
 #define version "0.018 (beta)"
 
+#include "includeLibs.hpp"
+
 Int NCHR = 22; // autosomal only
 #define WHICHMETHOD 1 // method 1 or 2, see https://isogg.org/wiki/Autosomal_DNA_statistics
 Doub cmperchr[22] = { 284.,269.,223.,214.,204.,192.,187.,168.,166.,
