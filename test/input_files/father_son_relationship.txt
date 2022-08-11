@@ -1,0 +1,9 @@
+newPerson Father
+newPerson Mother
+
+newChild Son Father Mother
+
+personOfInterest Son Father
+runTrials 1000
+allZeros
+newData Son Father 3400

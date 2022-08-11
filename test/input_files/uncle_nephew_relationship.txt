@@ -10,4 +10,4 @@ newChild Son Father Mother
 personOfInterest Son Uncle
 runTrials 1000
 allZeros
-newData Son Uncle 1741
+newData Son Uncle 1700
