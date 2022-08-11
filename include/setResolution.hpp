@@ -4,6 +4,7 @@
 #include "includeLibs.hpp"
 #include "globals.hpp"
 
+// used only in Genealogy
 void setresolution(Int totb) {
 	// given total number of bins in genome, get integer bins for each chr
 	binsperchr.resize(NCHR);

@@ -38,7 +38,7 @@ TEST(FullProgramTest, TestUncleRelationship) {
   int input_argc = 2;
   char *input_argv[] = {
     (char*)"",
-    (char*)"test/input_files/uncle_newphew_relationship.txt",
+    (char*)"test/input_files/uncle_nephew_relationship.txt",
     NULL
   };
 
