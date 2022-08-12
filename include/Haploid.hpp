@@ -4,44 +4,22 @@
 #include "includeLibs.hpp"
 #include "globals.hpp"
 
-/*
-+=================================+
-|          Haploid                |
-|---------------------------------|
-| chromos: int[chromosome][bin]   | vector of chromosomes
-|                                 | chromosomes are split into bins of specified length
-| idtocode: string                |
-| ran: Ran                        | -random number generator
-|---------------------------------|
-| recombine(Haploid) -> Haploid   | recombination event. Produces new haploid with other
-| init(int) -> void               | sets all values in chromos matrix
-| printme() -> void               | print Haploid into
-| stats(Haploid) -> int[]         |
-| stats(int) -> int[]             |
-| stats2(int) -> int[]            |
-| stats3(int) -> int              |
-|                                 |
-+=================================+
-
-+===================+
-|   Genome          | Genome contains two haploids
-|-------------------|
-| fa: Haploid       |
-| mo: Haploid       |
-|                   |
-+===================+
-
-*/
-
 struct Haploid {
-	// from globals used only in Haploid
+	// random number generator
 	Ran ran;
-	// from globals used only in Haploid
-	static const char idtocode[];
+	const char idtocode[64] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ?";
 	// each chromosome is broken into bins
 	NRvector<VecInt> chromos; // matrix of [chromosome][bin]
-	Haploid();
+	// used in Genealogy Genome Haploid
+	Int &totbins;
+	// used in Haploid
+	VecInt &binsperchr;
+	// used in Genome Haploid
+	VecDoub &cmperbin;
+
+	Haploid(Int &totbins, VecInt &binsperchr, VecDoub &cmperbin);
 	Haploid(const Haploid& old);
+	Haploid &operator=(const Haploid& other);
 	void printme();
 	void init(Int uniq); // uniq is normally either 2*id (fa) or 2*id+1 (mo)
 	Haploid recombine(Haploid &other);
@@ -51,17 +29,34 @@ struct Haploid {
 	VecInt stats(Haploid &other);  // run statistics between two haploids
 };
 
-const char Haploid::idtocode[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ?"; // ? is [62]
+// const char Haploid::idtocode[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ?"; // ? is [62]
 
-Haploid::Haploid() : chromos(NCHR) {
+Haploid::Haploid(Int &totbins, VecInt &binsperchr, VecDoub &cmperbin):
+	chromos(NCHR),
+	totbins(totbins),
+	binsperchr(binsperchr),
+	cmperbin(cmperbin)
+{
 	for (int i = 0; i < NCHR; i++) chromos[i].resize(binsperchr[i]);
 }
 
-Haploid::Haploid(const Haploid& old) { // copy constructor
+Haploid::Haploid(const Haploid& old):
+	totbins(old.totbins),
+	binsperchr(old.binsperchr),
+	cmperbin(old.cmperbin)
+{ // copy constructor
 	for (int i = 0; i < NCHR; i++) {
 		chromos[i].resize(binsperchr[i]);
 		for (int j = 0; j < chromos[i].size(); j++) chromos[i][j] = old.chromos[i][j];
 	}
+}
+
+Haploid & Haploid::operator=(const Haploid& other) {
+	chromos = other.chromos;
+	totbins = other.totbins;
+	binsperchr = other.binsperchr;
+	cmperbin = other.cmperbin;
+	return *this;
 }
 
 void Haploid::printme() {
@@ -85,7 +80,7 @@ void Haploid::init(Int uniq) { // uniq is normally either 2*id (fa) or 2*id+1 (m
 
 Haploid Haploid::recombine(Haploid &other) {
 	// does a recombination of two Haploids by the cM probabilities
-	Haploid ans;
+	Haploid ans = Haploid(totbins, binsperchr, cmperbin);
 	Doub prob;
 	VecInt *aa, *bb;
 	for (int i = 0; i < NCHR; i++) {

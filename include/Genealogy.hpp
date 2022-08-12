@@ -4,7 +4,6 @@
 #include "includeLibs.hpp"
 #include "lenFixedCharArray.hpp"
 #include "Person.hpp"
-#include "setResolution.hpp"
 #include "TrialsOutput.hpp"
 #include "globals.hpp"
 #include "myThrow.hpp"
@@ -18,6 +17,20 @@ struct Genealogy {
 	char *mpersons_g[1000]; // global array of mpersons names
 	// used in Genealogy and parse refactored from global
 	Int npersons_g = 0; // global number of mpersons
+	// used in DataSet Genealogy MultivariateModel and setResolution refactored from globals
+	Doub totcm;
+	// used only in setResolution pointless???
+	Doub cmperchr[22] = { 284.,269.,223.,214.,204.,192.,187.,168.,166.,
+		181.,158.,175.,126.,119.,141.,134.,128.,117.,108.,108.,62.7,72.7};
+		// using 23andMe values from https://isogg.org/wiki/CentiMorgan
+	// used in Genealogy Genome Haploid and setResolution
+	Int totbins = 0;
+	// used in Haploid and setResolution
+	VecInt binsperchr;
+	// used in Genome Haploid and setResolution
+	VecDoub cmperbin;
+	// used only in setResolution
+	Doub meancmperbin;
 
 	Genealogy();
 	~Genealogy();
@@ -34,6 +47,7 @@ struct Genealogy {
 	TrialsOutput runtrials(Int ntry);
 	void showtrials(TrialsOutput &trials, char **cpersons, char **mpersons, MatDoub *measurements = NULL);
 	void dumptrials(FILE *OUTP, TrialsOutput &trials);
+	void setresolution(Int totb);
 };
 
 Genealogy::Genealogy():
@@ -51,7 +65,7 @@ Person* Genealogy::newPerson(const char *id) {
 		printf("attempting to define %s, but that person already defined\n",id);
 		mythrow("exiting...");
 	}
-	Person* ans = new Person;
+	Person* ans = new Person(totbins, binsperchr, cmperbin);
 	ans->idnum = npersons;
 	strcpy(ans->idstr, id);
 	ans->genome.initgenome(npersons);
@@ -287,6 +301,30 @@ void Genealogy::dumptrials(FILE *OUTP, TrialsOutput &trials) {
 		}
 		fprintf(OUTP, "\n");
 	}
+}
+
+void Genealogy::setresolution(Int totb) {
+	// given total number of bins in genome, get integer bins for each chr
+	binsperchr.resize(NCHR);
+	cmperbin.resize(NCHR);
+	totbins = totb;
+	totcm = 0.;
+	for (int i = 0; i < NCHR; i++) totcm += cmperchr[i];
+	for (int i = 0; i < NCHR; i++) cmperchr[i] *= (twinsvalue / totcm);
+	totcm = twinsvalue;
+	meancmperbin = totcm / Doub(totbins);
+	Doub cmleft = totcm;
+	Int binsleft = totbins;
+	for (int i = NCHR - 1; i > 0; i--) { // yes, > is correct
+		binsperchr[i] = int((cmperchr[i] * binsleft / cmleft) + 0.5); // round to nearest int
+		binsleft -= binsperchr[i];
+		cmleft -= cmperchr[i];
+		cmperbin[i] = cmperchr[i] / binsperchr[i];
+	}
+	binsperchr[0] = binsleft;
+	cmperbin[0] = cmleft / binsleft;
+	if (0) for (int i = 0; i < NCHR; i++) printf("%2d: %.3f %4d %.3f %.3f\n",
+		i + 1, cmperchr[i], binsperchr[i],cmperbin[i],meancmperbin);
 }
 
 
