@@ -5,6 +5,6 @@ newChild Son Father Mother
 newChild Daughter Father Mother
 
 personOfInterest Son Daughter
-runTrials 3000
+runTrials 1000
 allZeros
-newData Son Daughter 3400
+newData Son Daughter 2613

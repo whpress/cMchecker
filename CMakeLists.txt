@@ -26,14 +26,14 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-    full_program_test
-    test/full_program_test.cpp
+    run_tests
+    test/run_tests.cpp
 )
 
 target_link_libraries(
-    full_program_test
+    run_tests
     GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(full_program_test)
+gtest_discover_tests(run_tests)
