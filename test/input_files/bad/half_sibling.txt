@@ -1,0 +1,11 @@
+newPerson Father1
+newPerson Father2
+newPerson Mother
+
+newChild Sibling1 Father1 Mother
+newChild Sibling2 Father2 Mother
+
+personOfInterest Sibling1 Sibling2
+runTrials 1000
+allZeros
+newData Sibling1 Sibling2 1000

@@ -14,6 +14,11 @@
 
 #include <gtest/gtest.h>
 
+int main (int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
 void simulate_body_main(int argc, char **argv, Genealogy &gg, DataSet &dd) {
   char filin[1024], cwd[2048];
 	Int flag;
@@ -33,12 +38,11 @@ void simulate_body_main(int argc, char **argv, Genealogy &gg, DataSet &dd) {
 	}
 }
 
-TEST(FullProgramTest, TestUncleRelationship) {
-  
+double obtain_chisquared(std::string input_file) {
   int input_argc = 2;
   char *input_argv[] = {
     (char*)"",
-    (char*)"test/input_files/uncle_newphew_relationship.txt",
+    (char*)input_file.c_str(),
     NULL
   };
 
@@ -48,7 +52,9 @@ TEST(FullProgramTest, TestUncleRelationship) {
   simulate_body_main(input_argc, input_argv, gg, dd);
 
   MultivariateModel mm(gg, trials_g, dd, measerr_g);
-  std::cout << "RESULTING chisqprob: " << mm.chisqprob << endl;
-
-  EXPECT_TRUE((mm.chisqprob > 0.80) && (mm.chisqprob < 0.90));
+  return mm.chisqprob;
 }
+
+#include "test_ideal_values.cpp"
+#include "test_avg_values.cpp"
+#include "test_bad_values.cpp"

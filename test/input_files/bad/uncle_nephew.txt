@@ -1,0 +1,13 @@
+newPerson Grandfather
+newPerson Grandmother
+newPerson Mother
+
+newChild Father Grandfather Grandmother
+newChild Uncle Grandfather Grandmother
+
+newChild Son Father Mother
+
+personOfInterest Son Uncle
+runTrials 1000
+allZeros
+newData Son Uncle 1000

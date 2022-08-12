@@ -60,16 +60,16 @@ Int parse(Genealogy &gg, DataSet &dd, FILE* &INP) {
 		}
 		else if (strcmp(token, "personofinterest") == 0 || strcmp(token, "personsofinterest") == 0) {
 			while ((tok = strtok(NULL, " ,\t")) != NULL && strlen(tok) > 0) {
-				mpersons_g[npersons_g] = new char[strlen(tok) + 1]; // will ignore memory leak
-				strcpy(mpersons_g[npersons_g], tok);
-				printf("pre-trials: %s is a person of interest\n", mpersons_g[npersons_g]);
-				++npersons_g;
+				gg.mpersons_g[gg.npersons_g] = new char[strlen(tok) + 1]; // will ignore memory leak
+				strcpy(gg.mpersons_g[gg.npersons_g], tok);
+				printf("pre-trials: %s is a person of interest\n", gg.mpersons_g[gg.npersons_g]);
+				++gg.npersons_g;
 			}
 		}
 		else if (strcmp(token, "allzeros") == 0) {
-			for (int i = 0; i < npersons_g; i++) {
-				for (int j = i+1; j < npersons_g; j++) {
-					dd.addpair(mpersons_g[i], mpersons_g[j], 0.);
+			for (int i = 0; i < gg.npersons_g; i++) {
+				for (int j = i+1; j < gg.npersons_g; j++) {
+					dd.addpair(gg.mpersons_g[i], gg.mpersons_g[j], 0.);
 				}
 			}
 		}
@@ -117,8 +117,8 @@ Int parse(Genealogy &gg, DataSet &dd, FILE* &INP) {
 		else if (strcmp(token, "show") == 0 || strcmp(token, "showmodel") == 0) {
 			printf("\nBaseline model:\n");
 			MultivariateModel mm(gg, trials_g, dd, measerr_g);
-			logprob_g = mm.logprob;
-			chsqprob_g = mm.chisqprob;
+			mm.logprob_g = mm.logprob;
+			mm.chsqprob_g = mm.chisqprob;
 			mm.showmodel();
 		}
 		else if (strcmp(token, "showmodelomitting") == 0) {
