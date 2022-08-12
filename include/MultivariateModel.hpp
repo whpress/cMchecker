@@ -50,7 +50,7 @@ void MultivariateModel::domodel(Doub measerr) { // SQR(measerr) is added to cova
 	// convert trials to sqrts (because more Normally distributed)
 	TrialsOutput sqtrials(ncp, nmp, ntrials);
 	for (i = 0; i < ncp; i++) for (j = 0; j < nmp; j++) for (k = 0; k < ntrials; k++) {
-		sqtrials[i][j][k] = sqrt(MAX(0., trials[i][j][k]/totcm));
+		sqtrials[i][j][k] = sqrt(MAX(0., trials[i][j][k]/gg.totcm));
 	}
 	mu.resize(mpr);
 	pctile.resize(mpr);

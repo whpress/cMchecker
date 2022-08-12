@@ -22,14 +22,14 @@ struct DataSet {
 		// see if already in data, in which case only change val
 		for (int idat = 0; idat < ndat; idat++) {
 			if ((pri[idat] == ti && prj[idat] == tj) || (pri[idat] == tj && prj[idat] == ti)) {
-				valij[idat] = sqrt(val/totcm);
+				valij[idat] = sqrt(val/gg.totcm);
 				return;
 			}
 		}
 		// make new entry
 		pri[ndat] = ti;
 		prj[ndat] = tj;
-		valij[ndat++] = sqrt(val/totcm);
+		valij[ndat++] = sqrt(val/gg.totcm);
 	}
 	void moveto(const char *id1, const char *id2) {
 		Int src = gg.idfromstr(id1), dest = gg.idfromstr(id2);

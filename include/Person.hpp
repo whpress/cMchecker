@@ -9,17 +9,28 @@ struct Person {
 	int idnum, idfa, idmo;
 	char idstr[64];
 	bool isTree, isCperson, isMperson; // C = candidate node, M = GEDmatched node
+	// // used in Genealogy Genome Haploid
+	// Int &totbins;
+	// // used in Haploid
+	// VecInt &binsperchr;
+	// // used in Genome Haploid
+	// VecDoub &cmperbin;
 	Genome genome;
-	Person();
+
+	Person(Int &totbins, VecInt &binsperchr, VecDoub &cmperbin);
 };
 
-Person::Person():
+Person::Person(Int &totbins, VecInt &binsperchr, VecDoub &cmperbin):
 	idnum(-1),
 	idfa(-1),
 	idmo(-1),
 	isTree(false),
 	isCperson(false),
-	isMperson(false)
+	isMperson(false),
+	// totbins(totbins),
+	// binsperchr(binsperchr),
+	// cmperbin(cmperbin),
+	genome(Genome(totbins, binsperchr, cmperbin))
 	{}
 
 #endif
