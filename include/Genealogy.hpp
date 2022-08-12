@@ -14,6 +14,11 @@ struct Genealogy {
 	const static int maxpersons = 1000;
 	Int npersons;
 	NRvector<Person*> persons;
+	// used in Genealogy and parse refactored from global
+	char *mpersons_g[1000]; // global array of mpersons names
+	// used in Genealogy and parse refactored from global
+	Int npersons_g = 0; // global number of mpersons
+
 	Genealogy();
 	~Genealogy();
 	Person* newPerson(const char *id);

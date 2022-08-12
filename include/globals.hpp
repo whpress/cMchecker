@@ -24,15 +24,7 @@ VecInt binsperchr;
 VecDoub cmperbin;
 // used only in setResolution
 Doub meancmperbin;
-// used in MultivariateModel and parse
-Doub logprob_g = 0.;
-// used in MultivariateModel and parse
-Doub chsqprob_g = 1.;
 // used in parse and full_program_test
-Doub measerr_g = 0.03; // default "measurement error"
-// used in Genealogy and parse
-char *mpersons_g[1000]; // global array of mpersons names
-// used in Genealogy and parse
-Int npersons_g = 0; // global number of mpersons
+const Doub measerr_g = 0.03; // default "measurement error"
 
 #endif
