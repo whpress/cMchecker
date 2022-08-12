@@ -14,6 +14,11 @@
 
 #include <gtest/gtest.h>
 
+int main (int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
 void simulate_body_main(int argc, char **argv, Genealogy &gg, DataSet &dd) {
   char filin[1024], cwd[2048];
 	Int flag;
@@ -50,20 +55,6 @@ double obtain_chisquared(std::string input_file) {
   return mm.chisqprob;
 }
 
-TEST(FullProgramTest, TestFatherSonRelationship) {
-  double returned_chisquared = obtain_chisquared("test/input_files/father_son_relationship.txt");
-  std::cout << "Resulting chi^2 probability: " << returned_chisquared << endl;
-  EXPECT_TRUE(returned_chisquared > 0.99);
-}
-
-TEST(FullProgramTest, TestUncleNephewRelationship) {
-  double returned_chisquared = obtain_chisquared("test/input_files/uncle_nephew_relationship.txt");
-  std::cout << "Resulting chi^2 probability: " << returned_chisquared << endl;
-  EXPECT_TRUE(returned_chisquared > 0.95);
-}
-
-TEST(FullProgramTest, TestSiblingRelationship) {
-  double returned_chisquared = obtain_chisquared("test/input_files/sibling_relationship.txt");
-  std::cout << "Resulting chi^2 probability: " << returned_chisquared << endl;
-  EXPECT_TRUE(returned_chisquared > 0.95);
-}
+#include "test_ideal_values.cpp"
+#include "test_avg_values.cpp"
+#include "test_bad_values.cpp"

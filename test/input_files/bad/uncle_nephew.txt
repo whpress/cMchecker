@@ -8,6 +8,6 @@ newChild Uncle Grandfather Grandmother
 newChild Son Father Mother
 
 personOfInterest Son Uncle
-runTrials 3000
+runTrials 1000
 allZeros
-newData Son Uncle 1700
+newData Son Uncle 1000
