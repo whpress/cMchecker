@@ -33,12 +33,11 @@ void simulate_body_main(int argc, char **argv, Genealogy &gg, DataSet &dd) {
 	}
 }
 
-TEST(FullProgramTest, TestUncleRelationship) {
-  
+double obtain_chisquared(std::string input_file) {
   int input_argc = 2;
   char *input_argv[] = {
     (char*)"",
-    (char*)"test/input_files/uncle_nephew_relationship.txt",
+    (char*)input_file.c_str(),
     NULL
   };
 
@@ -48,7 +47,23 @@ TEST(FullProgramTest, TestUncleRelationship) {
   simulate_body_main(input_argc, input_argv, gg, dd);
 
   MultivariateModel mm(gg, trials_g, dd, measerr_g);
-  std::cout << "RESULTING chisqprob: " << mm.chisqprob << endl;
+  return mm.chisqprob;
+}
 
-  EXPECT_TRUE((mm.chisqprob > 0.80) && (mm.chisqprob < 0.90));
+TEST(FullProgramTest, TestFatherSonRelationship) {
+  double returned_chisquared = obtain_chisquared("test/input_files/father_son_relationship.txt");
+  std::cout << "Resulting chi^2 probability: " << returned_chisquared << endl;
+  EXPECT_TRUE(returned_chisquared > 0.99);
+}
+
+TEST(FullProgramTest, TestUncleNephewRelationship) {
+  double returned_chisquared = obtain_chisquared("test/input_files/uncle_nephew_relationship.txt");
+  std::cout << "Resulting chi^2 probability: " << returned_chisquared << endl;
+  EXPECT_TRUE(returned_chisquared > 0.95);
+}
+
+TEST(FullProgramTest, TestSiblingRelationship) {
+  double returned_chisquared = obtain_chisquared("test/input_files/sibling_relationship.txt");
+  std::cout << "Resulting chi^2 probability: " << returned_chisquared << endl;
+  EXPECT_TRUE(returned_chisquared > 0.95);
 }
