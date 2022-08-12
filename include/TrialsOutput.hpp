@@ -14,6 +14,5 @@ struct TrialsOutput {
     MatDoub & operator [](int i) {return block[i];}
 	Int size() { return block.size(); }
 };
-TrialsOutput trials_g(0,0,0); // a global TrialsOutput
 
 #endif

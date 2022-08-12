@@ -9,6 +9,7 @@
 #include "myThrow.hpp"
 
 Int parse(Genealogy &gg, DataSet &dd, FILE* &INP) {
+	TrialsOutput trials_g(0,0,0);
 	Int nread, nconv;
 	char lin[4096], line[4096], token[1024], token2[1024], token3[1024];
 	char *tok, *p;

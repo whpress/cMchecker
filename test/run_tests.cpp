@@ -51,6 +51,7 @@ double obtain_chisquared(std::string input_file) {
 
   simulate_body_main(input_argc, input_argv, gg, dd);
 
+	TrialsOutput trials_g(0,0,0);
   MultivariateModel mm(gg, trials_g, dd, measerr_g);
   return mm.chisqprob;
 }
