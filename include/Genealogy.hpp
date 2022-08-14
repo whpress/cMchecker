@@ -38,7 +38,7 @@ struct Genealogy {
 	void newChild(const char *id, const char *idfa, const char *idmo);
 	void newChild(const char *id, const char *idparent, Int ngen=1);
 	Int idfromstr(const char *str); // return idnum from idstr
-	void makeGED(char *filename);
+	void makeGED(string filename);
 	void instantiate(); // computes an instance of all the genomes
 	void showallgenomes();
 	TrialsOutput runtrials(Int ntry, VecInt &cperid, VecInt &mperid);
@@ -113,11 +113,11 @@ Int Genealogy::idfromstr(const char *str) { // return idnum from idstr
 	}
 	return -1;
 }
-void Genealogy::makeGED(char *filename) {
+void Genealogy::makeGED(string filename) {
 	Int nis = 0, nfam = 0, idmo, idfa, id;
 	VecInt famc(1000), fams1(1000), fams2(1000), famid(1000), famdone(1000, 0);
 	Person *per;
-	FILE *OUTP = fopen(filename, "wb");
+	FILE *OUTP = fopen(filename.c_str(), "wb");
 	if (OUTP == NULL) mythrow("error: can\'t open file in makeGED");
 	fprintf(OUTP, "0 HEAD\r\n1 SOUR CMC\r\n2 NAME cMchecker\r\n2 VERS 0.0\r\n");
 	fprintf(OUTP, "1 SUBM @SUBM@\r\n1 GEDC\r\n2 VERS 5.5.1\r\n");

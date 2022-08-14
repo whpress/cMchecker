@@ -9,7 +9,7 @@ include_directories(include)
 # Add src files individualy 
 set(CLI_SOURCES src/cMchecker.cpp)
 # Or add all src files
-# file(GLOB SOURCES "src/*.cpp")
+# file(GLOB CLI_SOURCES "src/*.cpp")
 add_executable(cMchecker ${CLI_SOURCES})
 
 include(FetchContent)

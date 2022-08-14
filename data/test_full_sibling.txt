@@ -1,3 +1,4 @@
+
 newPerson rootA
 newPerson rootB
 newChild Dan rootA rootB
